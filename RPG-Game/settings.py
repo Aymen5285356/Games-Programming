@@ -1,0 +1,14 @@
+WIDTH = 880   # 22 * 40
+HEIGHT = 520  # 13 * 40
+FPS = 60
+
+PLAYER_SPEED = 5
+ENEMY_SPEED = 2
+TILE_SIZE = 40
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
