@@ -1,80 +1,53 @@
-# Games-Programming
+# 🎮 RPG Game 2D (Python / Pygame)
 
+## 📌 Overview
 
-```markdown
-# 🎮 RPG Game 2D
-
-A 2D RPG game developed using Python and Pygame.
-
-This project is part of my Game Programming learning journey, where I practice building simple game mechanics and improving my programming skills.
+RPG Game 2D is a simple 2D game developed using Python and the Pygame library.  
+The project is focused on learning game development fundamentals such as movement, shooting mechanics, collision detection, and basic enemy behavior.
 
 ---
 
-## 🚀 Description
+## 🚀 Features
 
-This is a simple 2D RPG-style game where the player can move, shoot bullets, and interact with enemies in a basic game environment.
+### 🧍 Player System
+- Smooth movement in all directions
+- Simple character control system
+- Collision with environment and enemies
 
----
+### 🔫 Shooting System
+- Bullet shooting mechanic
+- Collision detection with enemies
+- Basic damage system
 
-## 🛠️ Technologies
+### 👾 Enemy System
+- Simple enemy AI
+- Enemy movement behavior
+- Health system and death handling
 
-- Python 🐍  
-- Pygame 🎮  
-
----
-
-## 🎯 Features
-
-- Player movement
-- Shooting system
-- Enemies
+### 🎮 Game Mechanics
+- Game loop system
 - Collision detection
-- Basic game loop
+- Basic physics interactions
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Technologies Used
 
-```
+- Python 3 🐍
+- Pygame 🎮
 
-RPG_game-2D/
-├── main.py
-├── player.py
-├── enemy.py
-├── bullet.py
-├── settings.py
-├── assets/
-│   ├── images/
-│   └── sounds/
+---
 
-````
+## 🎯 Controls
+
+- **W / A / S / D** → Move player  
+- **Mouse / Click** → Shoot (if enabled)  
+- **ESC** → Quit game  
 
 ---
 
 ## ▶️ How to Run
 
-1. Install Pygame:
 ```bash
 pip install pygame
-````
-
-2. Run the game:
-
-```bash
 python main.py
-```
-
----
-
-## 👨‍💻 Author
-
-Aymen ELyaakoubi
-Game Programming Student 🎮
-GitHub: Aymen5285356
-
----
-
-## ⭐ Note
-
-This project is still in development and will be improved over time.
-
