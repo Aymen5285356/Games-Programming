@@ -1,37 +1,43 @@
-# 🎮 RPG Game 2D (Pygame)
+# 🎮 Game Programming Projects
+
+This repository contains multiple game development projects built using Python, exploring both **2D and 3D game development**.
+
+---
+
+# 🕹️ Project 1: RPG Game 2D (Pygame)
 
 ## 📌 Overview
 
-RPG Game 2D is a simple 2D game developed using Python and the Pygame library.  
-The project focuses on learning game development fundamentals such as movement, shooting mechanics, collision detection, and basic enemy behavior in a 2D environment.
+RPG Game 2D is a simple 2D RPG-style game developed using Python and the Pygame library.  
+It focuses on learning the fundamentals of game development such as movement, shooting, and collision detection.
 
 ---
 
 ## 🚀 Features
 
 ### 🧍 Player System
-* Smooth 2D movement (WASD / arrow keys)
-* Simple player controls
-* Collision with enemies and environment
+* Smooth 2D movement
+* Simple controls
+* Collision handling
 
 ### 🔫 Shooting System
-* Bullet shooting mechanic
-* Collision detection between bullets and enemies
+* Bullet mechanics
+* Collision with enemies
 * Basic damage system
 
 ### 👾 Enemy System
 * Simple enemy behavior
-* Movement and interaction with player
-* Health system and death handling
+* Movement and interaction
+* Health and death system
 
 ### 🎮 Game Mechanics
-* Game loop system
+* Game loop
 * Collision detection
-* Basic 2D physics interactions
+* Basic environment
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Technologies
 
 * Python 3
 * Pygame
