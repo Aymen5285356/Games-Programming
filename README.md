@@ -50,6 +50,8 @@ It focuses on learning the fundamentals of game development such as movement, sh
 pip install pygame
 python main.py
 
+---
+
 ## 📈 Future Improvements
 
 * Ammo & reload system
