@@ -49,3 +49,23 @@ It focuses on learning the fundamentals of game development such as movement, sh
 ```bash
 pip install pygame
 python main.py
+
+## 📈 Future Improvements
+
+* Ammo & reload system
+* Advanced enemy AI
+* Sound effects (guns, footsteps)
+* Real 3D weapon models
+* Inventory system
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Aymen ELyaakoubi**
+
+---
+
+## ⭐ Support
+
+If you like this project, feel free to star ⭐ the repository!
