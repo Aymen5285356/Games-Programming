@@ -64,7 +64,9 @@ python main.py
 
 ## 📷 Screenshots
 
-![Gameplay GIF](https://3D-Game.gif)
+<p align="center">
+  <img src="3D-Game.gif" width="400" alt="3D-Game GIF">
+</p>
 
 ---
 
