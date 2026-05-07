@@ -5,13 +5,11 @@ import math
 
 app = Ursina()
 
-# ================== STATE ==================
 game_state = "menu"
 
 mouse.visible = True
 mouse.locked = False
 
-# ================== PLAYER ==================
 class PlayerCharacter(FirstPersonController):
     def __init__(self):
         super().__init__(speed=8, position=(0,2,0))
@@ -48,7 +46,6 @@ class PlayerCharacter(FirstPersonController):
 player = PlayerCharacter()
 player.enabled = False
 
-# ================== ENEMY ==================
 class Enemy(Entity):
     def __init__(self, position=(0,0,0)):
         super().__init__(position=position)
@@ -79,7 +76,6 @@ class Enemy(Entity):
             enemies.remove(self)
             destroy(self)
 
-# ================== SHOOT ==================
 def shoot_ray(damage, spread):
     direction = camera.forward + Vec3(
         random.uniform(-spread, spread),
@@ -105,7 +101,6 @@ def shoot_ray(damage, spread):
         else:
             Entity(model='quad', color=color.gray, scale=0.2, position=hit.point, lifetime=0.3)
 
-# ================== WORLD ==================
 ground = Entity(model='plane', scale=100, collider='box', color=color.green)
 Sky()
 
@@ -142,7 +137,6 @@ def toggle_fps():
 
 Button(text="FPS ON/OFF", parent=menu_parent, y=-0.3, scale=(0.2,0.1), on_click=toggle_fps)
 
-# ================== UI ==================
 weapon_text = Text(position=(-0.85,0.45))
 
 crosshair = Entity(parent=camera.ui, model='quad', color=color.white, scale=0.01)
@@ -157,7 +151,6 @@ def update_ui():
     else:
         crosshair.scale = 0.02
 
-# ================== INPUT ==================
 def input(key):
     global game_state
 
@@ -189,7 +182,6 @@ def input(key):
         if key == 'escape':
             application.quit()
 
-# ================== UPDATE ==================
 def update():
     if game_state != "game":
         return
