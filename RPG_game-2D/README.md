@@ -40,8 +40,7 @@ The project focuses on learning game development fundamentals such as movement, 
 
 ## 📷 Screenshots
 
-[![](2D-Game.gif)](https://github.com/Aymen5285356/Game-Programming/blob/main/2D-Game.gif)
-
+<img src="2D-Game.gif" width="500">
 ---
 
 ## 📈 Future Improvements
