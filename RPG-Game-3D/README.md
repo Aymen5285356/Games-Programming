@@ -64,8 +64,7 @@ python main.py
 
 ## 📷 Screenshots
 
-![3D Game](3D-Game.gif)
-
+![3D Game](../3D-Game.gif)
 ---
 
 ## 📈 Future Improvements
