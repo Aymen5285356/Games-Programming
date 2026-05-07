@@ -40,8 +40,7 @@ The project focuses on learning game development fundamentals such as movement, 
 
 ## 📷 Screenshots
 
-![2D Game](./2D-Game.gif)
-## 📈 Future Improvements
+![2D Game](RPG_game-2D/2D-Game.gif)## 📈 Future Improvements
 
 * Ammo & reload system
 * Advanced enemy AI
