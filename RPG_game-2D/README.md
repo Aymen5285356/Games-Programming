@@ -40,7 +40,9 @@ The project focuses on learning game development fundamentals such as movement, 
 
 ## 📷 Screenshots
 
-![2D Game](2D-Game.gif)
+<p align="center">
+  <img src="./2D-Game.gif" width="500"/>
+</p>
 
 ## 📈 Future Improvements
 
