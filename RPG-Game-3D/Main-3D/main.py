@@ -5,16 +5,13 @@ import math
 
 app = Ursina()
 
-# ─── COLOR HELPER ─────────────────────────────────────────────────────────────
 def rgb(r, g, b):      return color.rgb(r/255, g/255, b/255)
 def rgba(r, g, b, a):  return color.rgba(r/255, g/255, b/255, a/255)
 
-# ─── LIGHTING ─────────────────────────────────────────────────────────────────
 DirectionalLight(y=20, z=20, shadows=True)
 AmbientLight(color=rgba(120,120,120,180))
 window.color = rgb(100,160,210)
 
-# ─── GAME STATE ───────────────────────────────────────────────────────────────
 game_state   = "menu"
 score        = 0
 wave         = 0
@@ -22,7 +19,6 @@ wave         = 0
 mouse.visible = True
 mouse.locked  = False
 
-# ─── WEAPON DEFINITIONS ───────────────────────────────────────────────────────
 WEAPONS = {
     "ak":     {"damage":12,  "spread":0.03,  "cooldown":0.10, "ammo":30, "max_ammo":30, "reserve":120, "reload_time":2.0, "auto":True,  "label":"AK-47   [1]"},
     "pistol": {"damage":28,  "spread":0.01,  "cooldown":0.40, "ammo":12, "max_ammo":12, "reserve":60,  "reload_time":1.2, "auto":False, "label":"Pistol  [2]"},
@@ -32,7 +28,6 @@ WEAPONS = {
 }
 weapon_states = {k: dict(v) for k, v in WEAPONS.items()}
 
-# ─── PLAYER ───────────────────────────────────────────────────────────────────
 class PlayerCharacter(FirstPersonController):
 
     def __init__(self):
@@ -65,7 +60,6 @@ class PlayerCharacter(FirstPersonController):
             if self.reload_cd <= 0:
                 self._finish_reload()
 
-    # called on mouse-down for semi-auto / sword
     def attack(self):
         if self.reloading:
             return
@@ -81,7 +75,6 @@ class PlayerCharacter(FirstPersonController):
         if weapon_states[w]["ammo"] <= 0:
             self.start_reload()
             return
-        # semi-auto: only fire once per click, guard with cooldown
         if self.shoot_cd <= 0:
             self._do_shoot()
 
@@ -145,7 +138,6 @@ class PlayerCharacter(FirstPersonController):
 player = PlayerCharacter()
 player.enabled = False
 
-# ─── GUN MODEL ────────────────────────────────────────────────────────────────
 gun_parent = Entity(parent=camera.ui)
 gun = Entity(parent=gun_parent, model='cube', color=rgb(20,20,20),
              scale=(0.22,0.12,0.7), position=(0.72,-0.42), rotation=(0,-5,0))
@@ -160,14 +152,12 @@ def _gun_kick():
     gun.position = (0.70,-0.44)
     invoke(setattr, gun, 'position', (0.72,-0.42), delay=0.05)
 
-# ─── SCREEN FLASH ─────────────────────────────────────────────────────────────
 flash_quad = Entity(parent=camera.ui, model='quad', color=color.clear, scale=(2,2), z=-1)
 
 def _screen_flash(col):
     flash_quad.color = col
     flash_quad.animate_color(color.clear, duration=0.3)
 
-# ─── SHOOT RAY ────────────────────────────────────────────────────────────────
 def shoot_ray(damage, spread):
     direction = camera.forward + Vec3(
         random.uniform(-spread, spread),
@@ -180,7 +170,7 @@ def shoot_ray(damage, spread):
     if not hit.hit:
         return
 
-    # ── FIX 2: walk up the parent chain to find the Enemy root ──
+   
     target = hit.entity
     checked = 0
     while target is not None and not isinstance(target, Enemy) and checked < 6:
@@ -193,7 +183,7 @@ def shoot_ray(damage, spread):
     else:
         Entity(model='sphere', color=color.yellow, scale=0.08, position=hit.point, lifetime=0.3)
 
-# ─── ENEMY ────────────────────────────────────────────────────────────────────
+
 class Enemy(Entity):
 
     def __init__(self, position=(0,0,0), tier=1):
@@ -204,7 +194,7 @@ class Enemy(Entity):
 
         body_col = {1: rgb(35,35,35), 2: rgb(180,30,30), 3: rgb(80,0,120)}.get(tier, rgb(35,35,35))
 
-        # body gets the collider so raycasts hit it, and its parent chain leads back to Enemy
+       
         self.body = Entity(parent=self, model='cube', scale=(0.8,1.2,0.4),
                            y=0.6, color=body_col, collider='box')
         self.head = Entity(parent=self, model='sphere', scale=0.35, y=1.5,
@@ -283,7 +273,7 @@ def spawn_enemy(tier=1):
     e = Enemy(position=(math.cos(angle)*r, 0, math.sin(angle)*r), tier=tier)
     enemies.append(e)
 
-# ─── WAVE SYSTEM ──────────────────────────────────────────────────────────────
+
 def start_wave():
     global wave
     wave += 1
@@ -310,7 +300,7 @@ def wave_text_popup(msg):
     t.animate_color(rgba(255,255,0,0), duration=3.0)
     destroy(t, delay=3.2)
 
-# ─── PICKUPS ──────────────────────────────────────────────────────────────────
+
 class Pickup(Entity):
     def __init__(self, kind, position):
         col = color.red if kind == "health" else color.cyan
@@ -353,7 +343,6 @@ def _maybe_spawn_pickups():
         p = Pickup(random.choice(["health","ammo"]), position=(x,0.5,z))
         pickups.append(p)
 
-# ─── ENVIRONMENT ──────────────────────────────────────────────────────────────
 ground = Entity(model='plane', scale=120, texture='white_cube', texture_scale=(120,120),
                 collider='box', color=rgb(55,130,55))
 Sky(color=rgb(100,160,210))
@@ -383,7 +372,6 @@ for _ in range(20):
     Entity(model='cube', position=(x,0.6,z), scale=1.2,
            color=rgb(160,110,40), collider='box', texture='white_cube')
 
-# ─── HUD ──────────────────────────────────────────────────────────────────────
 hud_parent = Entity(parent=camera.ui)
 hud_parent.enabled = False
 
@@ -416,7 +404,7 @@ def update_hud():
     score_text.text  = f"Score: {score}"
     wave_label.text  = f"Wave:  {wave}"
 
-# ─── PAUSE MENU ───────────────────────────────────────────────────────────────
+
 pause_parent = Entity(parent=camera.ui)
 pause_parent.enabled = False
 Entity(parent=pause_parent, model='quad', color=rgba(0,0,0,160), scale=(1,0.7), z=1)
@@ -432,7 +420,7 @@ def _resume():
 Button(text="RESUME",       parent=pause_parent, y= 0.00, scale=(0.22,0.08), on_click=_resume)
 Button(text="QUIT TO MENU", parent=pause_parent, y=-0.12, scale=(0.22,0.08), on_click=lambda: _go_to_menu())
 
-# ─── GAME OVER ────────────────────────────────────────────────────────────────
+
 go_parent = Entity(parent=camera.ui)
 go_parent.enabled = False
 Entity(parent=go_parent, model='quad', color=rgba(0,0,0,200), scale=(1,0.7), z=1)
@@ -454,7 +442,7 @@ def trigger_game_over():
 Button(text="PLAY AGAIN", parent=go_parent, y=-0.06, scale=(0.22,0.08), on_click=lambda: start_game())
 Button(text="MAIN MENU",  parent=go_parent, y=-0.18, scale=(0.22,0.08), on_click=lambda: _go_to_menu())
 
-# ─── MAIN MENU ────────────────────────────────────────────────────────────────
+
 menu_parent = Entity(parent=camera.ui)
 Entity(parent=menu_parent, model='quad', color=rgba(0,0,0,170), scale=(0.7,0.85), z=1)
 Text("SURVIVAL FPS", parent=menu_parent, y=0.34, scale=2.2, color=color.yellow)
@@ -489,7 +477,6 @@ def _go_to_menu():
     for e in list(enemies): destroy(e)
     enemies.clear()
 
-# ─── INPUT ────────────────────────────────────────────────────────────────────
 def input(key):
     global game_state
 
@@ -519,7 +506,7 @@ def input(key):
     elif game_state == "gameover":
         if key == 'escape': _go_to_menu()
 
-# ─── MAIN UPDATE ──────────────────────────────────────────────────────────────
+
 def update():
     if game_state != "game":
         return
